@@ -63,8 +63,8 @@ public class PostController {
   //수정
   @GetMapping("/{pid}/edit")
   public String updateForm(
-    @PathVariable("pid") Long postId,
-    Model model){
+      @PathVariable("pid") Long postId,
+      Model model){
 
     Optional<Post> optionalPost = postSVC.findById(postId);
     Post findedPost = optionalPost.orElseThrow();

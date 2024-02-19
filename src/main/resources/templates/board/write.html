@@ -7,7 +7,7 @@
   <title>게시글임당 쓰기모드</title>
   <!--  bootstrap css-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <style>
   h3 {
@@ -44,77 +44,77 @@
 </style>
 
 <body>
-  <br>
-  <h3>게시글 쓰기모드</h3>
-  <br>
-  <form id="frm" action="" method="post">
-    <div id="tbb">
-      <table class="table table-secondary">
-        <thead>
-          <tr>
-            <td class="table-dark">글제목</td>
-            <td>
-              <input class="err-msg" id="postTitle" name="postTitle" type="text">
+<br>
+<h3>게시글 쓰기모드</h3>
+<br>
+<form id="frm" action="/board/write" method="post">
+  <div id="tbb">
+    <table class="table table-secondary">
+      <thead>
+      <tr>
+        <td class="table-dark">글제목</td>
+        <td>
+          <input id="postTitle" name="postTitle" type="text">
 
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="table-dark">작성자</td>
-            <td>
-              <input class="err-msg" id="writer" name="writer" type="text">
-             
-            </td>
-          </tr>
-          <tr>
-            <td class="table-dark">내용</td>
-            <td>
-              <textarea class="err-msg" id="postBody" name="postBody" cols="30" rows="10"></textarea>
-              
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-      <div id="btns">
-        <button class="btn btn-dark" type="reset" value="초기화">초기화</button>
-        <button class="btn btn-dark" type="button" value="목록" id="listBtn">목록</button>
-        <button class="btn btn-dark" type="submit" value="저장" id="saveBtn">저장</button>
-      </div>
-  </form>
-  <script>
-    const $listBtn = document.getElementById('listBtn');
-    $listBtn.addEventListener('click', evt => {
-      location.href = '/board';
-    })
-    const $saveBtn = document.getElementById('saveBtn');
-    $saveBtn.addEventListener('click', evt => {
-      
-      const $postTitle = document.getElementById('postTitle').value;
-      const $writer = document.getElementById('writer').value;
-      const $postBody = document.getElementById('postBody').value;
-      
-      if($postTitle == ''){
-        alert('제목을 입력하세요');
-        return;
-      }
-      if($writer == ''){
-        alert('작성자를 입력하세요');
-        return;
-      }
-      if($postBody == ''){
-        alert('내용을 입력하세요');
-        return;
-      }
-      
-      document.getElementById('frm').submit();
-    
-    })
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-          crossorigin="anonymous"></script>
+        </td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="table-dark">작성자</td>
+        <td>
+          <input id="writer" name="writer" type="text">
+
+        </td>
+      </tr>
+      <tr>
+        <td class="table-dark">내용</td>
+        <td>
+          <textarea id="postBody" name="postBody" cols="30" rows="10"></textarea>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="btns">
+    <button class="btn btn-dark" type="reset" value="초기화">초기화</button>
+    <button class="btn btn-dark" type="button" value="목록" id="listBtn">목록</button>
+    <button class="btn btn-dark" type="submit" value="저장" id="saveBtn">저장</button>
+  </div>
+</form>
+<script>
+  const $listBtn = document.getElementById('listBtn');
+  $listBtn.addEventListener('click', evt => {
+    location.href = '/board';
+  })
+  const $saveBtn = document.getElementById('saveBtn');
+  $saveBtn.addEventListener('click', evt => {
+
+    const $postTitle = document.getElementById('postTitle').value;
+    const $writer = document.getElementById('writer').value;
+    const $postBody = document.getElementById('postBody').value;
+
+    if($postTitle == ''){
+      alert('제목을 입력하세요');
+      return;
+    }
+    if($writer == ''){
+      alert('작성자를 입력하세요');
+      return;
+    }
+    if($postBody == ''){
+      alert('내용을 입력하세요');
+      return;
+    }
+
+    document.getElementById('frm').submit();
+
+  })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 package com.kh.board.domain.entity;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDateTime;
