@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시판임당 수정중</title>
+  <!--  bootstrap css-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+</head>
+<style>
+h3 {
+  padding-top: 10px;
+  text-align: center;
+}
+
+#btns {
+  display: flex;
+  justify-content: end;
+  padding-right: 100px;
+}
+
+#tbb {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+input{
+  border: none;
+  width: 100%;
+}
+
+#tbb td textarea {
+  border: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 500px;
+}
+.table-dark {
+  width: 100px;
+  text-align: center;
+}
+
+</style>
+<body>
+  <h3>게시글 수정모드</h3>
+  <br>
+  <form id="frm" action="" method="post">
+    <div id="tbb">
+      <table class="table table-secondary">
+        <thead>
+          <tr>
+            <td class="table-dark">글제목</td>
+            <td><input id="postTitle" name="postTitle" type="text" th:value="${post.postTitle}"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-dark">작성자</td>
+            <td><input id="writer" name="writer" type="text" th:value="${post.writer}"></td>
+          </tr>
+          <tr>
+            <td class="table-dark">내용</td>
+            <td><textarea id="postBody" name="postBody"  th:value="${post.postBody}" th:text="${post.postBody}"></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="btns">
+      <button class="btn btn-dark" type="reset" value="초기화">초기화</button>
+      <button class="btn btn-dark" type="button" value="목록" id="listBtn">목록</button>
+      <button class="btn btn-dark" type="submit" value="저장">저장</button>
+    </div>
+  </form>
+  <script>
+    const $listBtn = document.getElementById('listBtn');
+    $listBtn.addEventListener('click',evt=>{
+      location.href = '/board';
+    }, false)
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+          crossorigin="anonymous"></script>
+
+</body>
+</html>
