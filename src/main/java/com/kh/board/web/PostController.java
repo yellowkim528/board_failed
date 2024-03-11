@@ -2,7 +2,6 @@ package com.kh.board.web;
 
 import com.kh.board.domain.entity.Post;
 import com.kh.board.domain.post.svc.PostSVC;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +41,6 @@ public class PostController {
     post.setWriter(writer);
     post.setPostBody(postBody);
 
-
     Long postId = postSVC.save(post);
     redirectAttributes.addAttribute("pid", postId);
 
@@ -60,7 +58,7 @@ public class PostController {
     return "board/body";
   }
 
-  //수정
+  //수정 화면
   @GetMapping("/{pid}/edit")
   public String updateForm(
       @PathVariable("pid") Long postId,
@@ -72,7 +70,7 @@ public class PostController {
     model.addAttribute("post",findedPost);
     return "board/update";
   }
-
+  //수정 처리
   @PostMapping("/{pid}/edit")
   public String update(
       @PathVariable("pid") Long postId,
@@ -97,9 +95,6 @@ public class PostController {
     int deleteRowCnt = postSVC.deleteById(postId);
     return "redirect:/board";
   }
-
-
-
 
   //목록
   @GetMapping

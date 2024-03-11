@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뉴스검색</title>
+</head>
+<body>
+  <h3>뉴스검색</h3>
+  <div>
+    <form action="/pubdata/news/search" method="GET">
+      <label for="search">검색어</label>
+      <input id="search" type="text" name="keyword">
+      <button id="searchBtn" type="button">검색</button>
+    </form>
+  </div>
+  <div>
+    <p>검색결과</p>
+    <table>
+      <thead>
+        <tr>
+          <th>제목</th>
+          <th>링크</th>
+          <th>요약</th>
+          <th>작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+  <script>
+    document.getElementById('searchBtn').addEventListener('click',evt =>{
+      const keyword = search.value;
+      const url = `/pubdata/news/search?keyword=${keyword}`
+      const option = {
+        method : 'GET'
+      };
+      fetch(url,option)
+        .then(res=>{
+          if(!res.ok){
+            throw new Error('응답오류발생');
+          }
+          return res.json();
+        })
+        .then(res=>{
+          console.log(res.items)
+          res.items.forEach(item => console.log(item.title))
+          makeHtml(res);
+        })
+        .catch(error=>console.error('오류 : ', error));
+    })
+
+  function makeHtml(res){
+    res.items.forEach(article => console.log(article.title, article.link, article.pubDate, article.description));
+    const $tbody = document.querySelector('tbody');
+    let html = '';
+    res.items.forEach(article => {
+      html += `<tr>
+                <td>${article.title}</td>
+                <td><a herf='${article.link}'>원문</td>
+                <td>${article.description}</td>
+                <td>${article.pubDate}</td>
+               </tr>`;
+    });
+    $tbody.innerHTML = html;
+  }
+  </script>
+</body>
+</html>
